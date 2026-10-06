@@ -25,9 +25,9 @@ const std::string COURSES_NOT_OFFERED_PATH = "student_output/courses_not_offered
  * Hint: Remember what types C++ streams work with?!
  */
 struct Course {
-  /* STUDENT TODO */ title;
-  /* STUDENT TODO */ number_of_units;
-  /* STUDENT TODO */ quarter;
+  /* STUDENT TODO */std::string title;
+  /* STUDENT TODO */std::string number_of_units;
+  /* STUDENT TODO */std::string quarter;
 };
 
 /**
@@ -51,15 +51,28 @@ struct Course {
  * file, where each line is a record!
  *
  * Hints:
- * 1) Take a look at the split function we provide in utils.cpp
- * 2) Each LINE is a record! *this is important, so we're saying it again :>)*
- * 3) The first line in the CSV defines the column names, so you can ignore it!
+ * 1) Take a look at the split function we provide in utils.cpp 看一下split函数
+ * 2) Each LINE is a record! *this is important, so we're saying it again :>)* 每一行就是一个记录
+ * 3) The first line in the CSV defines the column names, so you can ignore it! 忽略首行
  *
  * @param filename The name of the file to parse.
  * @param courses  A vector of courses to populate.
  */
-void parse_csv(std::string filename, std::vector<Course> courses) {
+void parse_csv(std::string filename, std::vector<Course>& courses) {
   /* (STUDENT TODO) Your code goes here... */
+  std::ifstream input(filename);
+  if (!input.is_open()) {
+    std::cerr << "无法打开文件" << '\n';
+    return;
+  }
+  std::vector<std::string> split_line;
+  std::string line;
+  std::getline(input, line);
+  while (std::getline(input, line)) {
+    split_line = split(line, ',');
+    Course course(split_line.at(0), split_line.at(1), split_line.at(2));
+    courses.push_back(course);
+  }
 }
 
 /**
@@ -72,16 +85,33 @@ void parse_csv(std::string filename, std::vector<Course> courses) {
  * IMPORTANT: do this after you write out to the file!
  *
  * HINTS:
- * 1) Keep track of the classes that you need to delete!
- * 2) Use the delete_elem_from_vector function we give you!
- * 3) Remember to write the CSV column headers at the beginning of the output!
+ * 1) Keep track of the classes that you need to delete! 记录需要删除的
+ * 2) Use the delete_elem_from_vector function we give you! 用这个函数
+ * 3) Remember to write the CSV column headers at the beginning of the output! 继续写头
  *    See courses.csv for reference.
  *
  * @param all_courses A vector of all courses gotten by calling `parse_csv`.
  *                    This vector will be modified by removing all offered courses.
  */
-void write_courses_offered(std::vector<Course> all_courses) {
+void write_courses_offered(std::vector<Course>& all_courses) {
   /* (STUDENT TODO) Your code goes here... */
+  std::vector<Course> delete_courses;
+  std::ofstream output(COURSES_OFFERED_PATH);
+  if (!output.is_open()) {
+    std::cerr << "打开文件失败" << '\n';
+    return;
+  }
+  output << "Title,Number of Units,Quarter" << '\n';
+  for (auto &all_course : all_courses) {
+    if (all_course.quarter != "null") {
+      delete_courses.push_back(all_course);
+      output << all_course.title << ',' << all_course.number_of_units << ',' << all_course.quarter << '\n';
+    }
+  }
+
+  for (auto &delete_course : delete_courses) {
+    delete_elem_from_vector(all_courses, delete_course);
+  }
 }
 
 /**
@@ -97,8 +127,17 @@ void write_courses_offered(std::vector<Course> all_courses) {
  *
  * @param unlisted_courses A vector of courses that are not offered.
  */
-void write_courses_not_offered(std::vector<Course> unlisted_courses) {
+void write_courses_not_offered(const std::vector<Course>& unlisted_courses) {
   /* (STUDENT TODO) Your code goes here... */
+  std::ofstream output(COURSES_NOT_OFFERED_PATH);
+  if(!output.is_open()) {
+    std::cerr << "文件无法打开" << '\n';
+    return;
+  }
+  output << "Title,Number of Units,Quarter" << '\n';
+  for (auto &unlisted_course : unlisted_courses) {
+      output << unlisted_course.title << ',' << unlisted_course.number_of_units << ',' << unlisted_course.quarter << '\n';
+  }
 }
 
 int main() {
