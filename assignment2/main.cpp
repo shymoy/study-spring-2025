@@ -14,7 +14,7 @@
 #include <string>
 #include <unordered_set>
 
-std::string kYourName = "STUDENT TODO"; // Don't forget to change this!
+std::string kYourName = "Fu HongJun"; // Don't forget to change this!
 
 /**
  * Takes in a file name and returns a set containing all of the applicant names as a set.
@@ -29,6 +29,13 @@ std::string kYourName = "STUDENT TODO"; // Don't forget to change this!
  */
 std::set<std::string> get_applicants(std::string filename) {
   // STUDENT TODO: Implement this function.
+  std::ifstream file(filename);
+  std::string line;
+  std::set<std::string> res;
+  while (std::getline(file, line)) {
+    res.insert(line);
+  }
+  return res;
 }
 
 /**
@@ -41,6 +48,15 @@ std::set<std::string> get_applicants(std::string filename) {
  */
 std::queue<const std::string*> find_matches(std::string name, std::set<std::string>& students) {
   // STUDENT TODO: Implement this function.
+  std::queue<const std::string*> res;
+  auto second_char = name[name.find(' ') + 1];
+  for (auto& student : students) {
+    auto pos = student.find(' ');
+    if (student[pos + 1] == second_char && student[0] == name[0]) {
+      res.push(&student);
+    }
+  }
+  return res;
 }
 
 /**
@@ -55,6 +71,14 @@ std::queue<const std::string*> find_matches(std::string name, std::set<std::stri
  */
 std::string get_match(std::queue<const std::string*>& matches) {
   // STUDENT TODO: Implement this function.
+  if (matches.empty()) {
+    return std::string{"NO MATCHES FOUND."};
+  }
+  int remove_item_num = matches.size() / 2;
+  for (int i = 0; i < remove_item_num; i++) {
+    matches.pop();
+  }
+  return *matches.front();
 }
 
 /* #### Please don't remove this line! #### */
