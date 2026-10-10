@@ -5,7 +5,7 @@ Make a Class
 ------------
 
 Q1. What’s const-correctness and why is it important?
-A1. TODO
+A1. 1.const加载方法上可以确保不修改变量，加在对象上面确保不调用非const函数，为什么让对接口更可靠，保证了const接口一定不会修改对象
 
 Q2. Is your class const-correct? How do you know?
-A2. TODO
+A2. 是const的，get方法用const保证只获取，set方法非const，可以修改
