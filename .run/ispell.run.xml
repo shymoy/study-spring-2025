@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="ispell" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;hello wrld&quot;" WORKING_DIR="file://$PROJECT_DIR$/assignment4" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cs106l_spring_2025" TARGET_NAME="ispell" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cs106l_spring_2025" RUN_TARGET_NAME="ispell">
+  <configuration default="false" name="ispell" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$/assignment4" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cs106l_spring_2025" TARGET_NAME="ispell" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cs106l_spring_2025" RUN_TARGET_NAME="ispell">
     <method v="2">
       <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
     </method>
