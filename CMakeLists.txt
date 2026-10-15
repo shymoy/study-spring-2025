@@ -36,3 +36,16 @@ set_target_properties(ispell PROPERTIES
     OUTPUT_NAME main
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/assignment4"
 )
+
+# Spring 2025 A5 starter: de3ebf91e5dbb80faaf4358b29e0a409120d9372
+add_executable(treebook
+    assignment5/main.cpp
+    assignment5/user.cpp
+    assignment5/user.h
+)
+target_compile_features(treebook PRIVATE cxx_std_20)
+set_target_properties(treebook PROPERTIES
+    CXX_EXTENSIONS OFF
+    OUTPUT_NAME main
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/assignment5"
+)
