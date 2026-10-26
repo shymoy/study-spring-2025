@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 3.20)
 project(cs106l_spring_2025 LANGUAGES CXX)
 
+# Spring 2025 A6 starter: 7183144fde4e96a9b2ca5a9c5ebaf63a5755226c
+# Keep the unfinished starter out of the default all-target build.
+add_executable(explore_courses EXCLUDE_FROM_ALL assignment6/main.cpp)
+target_compile_features(explore_courses PRIVATE cxx_std_23)
+set_target_properties(explore_courses PROPERTIES
+    CXX_EXTENSIONS OFF
+    OUTPUT_NAME main
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/assignment6"
+)
+
 add_executable(simple_enroll assignment1/main.cpp)
 target_compile_features(simple_enroll PRIVATE cxx_std_20)
 set_target_properties(simple_enroll PROPERTIES CXX_EXTENSIONS OFF)
